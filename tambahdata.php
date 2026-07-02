@@ -1,9 +1,32 @@
+<?php
+require 'fungsi.php';
+
+///jika tombol submit sudah ditekan
+if (isset($_POST["submit"])) 
+{
+    /// Cek apakah data berhasil ditambahkan lewat fungsi di fungsi.php
+    if (tambahdata($_POST) > 0) 
+    {
+        echo "<script>
+                alert('Data berhasil ditambahkan!');
+                document.location.href = 'mahasiswa.php';
+              </script>";
+    } else {
+        echo "<script>
+                alert('Data gagal ditambahkan!');
+                document.location.href = 'tambahdata.php';
+              </script>";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form Tambah Data</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -38,111 +61,46 @@
     <h2>
         Latihan 3 (Kamis, 23 April 2026)
     </h2>
-<form>
-    <label>
-        First name:
-    </label>
-    <br>
-    <input type="text" id="fname" name="fname" style="width: 250px">
-    <br>
-    <label>
-        NIM:
-    </label>
-    <br>
-    <input type="number" style="width: 250px;">
-    <br>
-    <label>
-        Password
-    </label>
-    <br>
-    <input type="password" style="width: 250px;">
-    <br>
-    <label>
-        E-mail
-    </label>
-    <br>
-    <input type="email" style="width: 250px;">
-    <br>
-    <label>
-        Nomor HP
-    </label>
-    <br>
-    <input type="tel" style="width: 250px;">
-    <br>
-    <label>
-        Website Pribadi
-    </label>
-    <br>
-    <input type="url" style="width: 250px;">
-    <br>
-    <label>
-        Tanggal lahir
-    </label>
-    <br>
-    <input type="date" style="width: 253px;">
-    <br>
-    <label>
-        Warna Favorit
-    </label>
-    <br>
-    <input type="color" style="width: 258px;">
-    <br>
-    <label>
-        Tingkat Kepuasan
-    </label>
-    <br>
-    <input type="range" style="width: 256px;">
-    <br>
-    <p>
-        Pilih Jenis Kelamin
-    </p>
-    <input type="radio" id="wanita" name="jenis kelamin" value="Wanita">
-    <label for="wanita">Wanita</label>
-    <br>
-    <input type="radio" id="pria" name="jenis kelamin" value="Pria">
-    <label for="wanita">Pria</label>
-    <p>
-        Pilih Hobi
-    </p>
-    <input type="checkbox" id="hobi1" name="hobi1" value="Musik">
-    <label for="hobi1">Mendengarkan Musik</label>
-    <br>
-    <input type="checkbox" id="hobi2" name="hobi2" value="Film">
-    <label for="hobi2">Menonton Film</label>
-    <br>
-    <input type="checkbox" id="hobi3" name="hobi3" value="Buku">
-    <label for="hobi3">Membaca Buku</label>
-    <br>
-    <input type="checkbox" id="hobi4" name="hobi4" value="Gambar">
-    <label for="hobi4">Menggambar</label>
-    <br>
-    <input type="checkbox" id="hobi5" name="hobi5" value="Olahaga">
-    <label for="hobi5">Bersepeda</label>
-    <br><br>
-    <label>
-        Upload Foto
-    </label>
-    <br>
-    <input type="file" style="width: 250px;">
-    <br><br>
-    <label for="alamat">Alamat:</label><br>
-    <textarea id="alamat" name="alamat" rows="4" style="width: 250px;"></textarea><br><br>
 
-    <label for="jurusan">Jurusan:</label><br>
-    <select id="jurusan" name="jurusan" style="width: 257px;">
-        <option value="">-- Pilih Jurusan --</option>
-        <option value="inf">Informatika</option>
-        <option value="ti">Teknologi Informasi</option>
-    </select><br><br>
+    <form action="" method="POST">
+        <label for="nama">Nama Lengkap:</label>
+        <br>
+        <input type="text" id="nama" name="nama" style="width: 250px;" required>
+        <br><br>
 
-    <input type="submit" value="Kirim Data" style="width: 257px;">
-</form>
-</div>
-<hr>
-<footer align="center">
-            <p>
-                <small>Developed by: Rosa Oktaviana P (13242520071)</small>
-            </p>
-        </footer>
+        <label for="nim">NIM:</label>
+        <br>
+        <input type="number" id="nim" name="nim" style="width: 250px;" required>
+        <br><br>
+
+        <label for="jurusan">Jurusan:</label>
+        <br>
+        <input type="text" id="jurusan" name="jurusan" style="width: 250px;" required>
+        <br><br>
+
+        <label for="email">E-mail:</label>
+        <br>
+        <input type="email" id="email" name="email" style="width: 250px;" required>
+        <br><br>
+
+        <label for="no_hp">Nomor HP:</label>
+        <br>
+        <input type="number" id="no_hp" name="no_hp" style="width: 250px;" required>
+        <br><br>
+
+        <label for="foto">Upload Foto:</label>
+        <br>
+        <input type="text" id="foto" name="foto" style="width: 250px;" required>
+        <br><br>
+
+        <button type="submit" name="submit" style="padding: 5px 15px;">Tambah Data</button>
+    </form>
+    </div>
+    <hr>
+    <footer align="center">
+        <p>
+            <small>Developed by: Rosa Oktaviana P (13242520071)</small>
+        </p>
+    </footer>
 </body>
 </html>
