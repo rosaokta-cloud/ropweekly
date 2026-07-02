@@ -29,7 +29,7 @@
                     <a href="latihan.php">Latihan</a>
                 </td>
                 <td>
-                    <a href="form.php">Form</a>
+                    <a href="tambahdata.php">Form</a>
                 </td>
             </tr>
         </table>
