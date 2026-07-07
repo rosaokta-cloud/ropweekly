@@ -87,7 +87,7 @@ $mahasiswas = tampildata($query); ///wadah isi data mahasiswa yang masih dibawa 
                 <td><?= $mhs["email"]; ?></td>
                 <td><?= $mhs["no_hp"]; ?></td>
                 <td>
-                    <img src="images/<?= $mhs['foto']; ?>" width="45px" height="auto">
+                    <img src="image/<?= $mhs['foto']; ?>" width="45px" height="auto">
                 </td>
                 <td>
                     <a href="editdata.php?id=<?= $mhs['id']; ?>">Edit</a> | 

@@ -1,23 +1,27 @@
 <?php
 require 'fungsi.php';
 
+$id = $_GET["id"];
+$query = ("SELECT * FROM mahasiswa WHERE id = $id");
+
+$mhs = tampildata($query)[0]; ///wadah isi data mahasiswa yang masih dibawa lemari (database) ke wadah baru (array) agar bisa digunakan di function
+//var_dump($mhs[0]["nama"]); die; //array 1 dimensi mhs[0], array 2 dimensi <mhs 1=""></mhs>["nama"]
+
+
 ///jika tombol submit sudah ditekan
 if (isset($_POST["submit"])) 
 {
     /// Cek apakah data berhasil ditambahkan lewat fungsi di fungsi.php
-    if (tambahdata($_POST, $_FILES["foto"]) > 0) 
+    if (editdata($_POST, $_FILES["foto"], $id) > 0) 
     {
-        // PERBAIKAN: Hapus atau komentari baris var_dump ini agar program tidak berhenti di sini
-        // var_dump($_FILES["foto"]["name"]); die; 
-        
         echo "<script>
-                alert('Data berhasil ditambahkan!');
+                alert('Data berhasil diedit!');
                 document.location.href = 'mahasiswa.php';
               </script>";
     } else {
         echo "<script>
-                alert('Data gagal ditambahkan!');
-                document.location.href = 'tambahdata.php';
+                alert('Data gagal diedit!');
+                document.location.href = 'mahasiswa.php';
               </script>";
     }
 }
@@ -29,7 +33,7 @@ if (isset($_POST["submit"]))
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Tambah Data</title>
+    <title>Form Edit Data</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -68,35 +72,35 @@ if (isset($_POST["submit"]))
     <form action="" method="POST" enctype="multipart/form-data">
         <label for="nama">Nama Lengkap:</label>
         <br>
-        <input type="text" id="nama" name="nama" style="width: 250px;" required>
+        <input type="text" id="nama" name="nama" style="width: 250px;" required value="<?= $mhs["nama"]; ?>">
         <br><br>
 
         <label for="nim">NIM:</label>
         <br>
-        <input type="number" id="nim" name="nim" style="width: 250px;" required>
+        <input type="number" id="nim" name="nim" style="width: 250px;" required value="<?= $mhs["nim"]; ?>">
         <br><br>
 
         <label for="prodi">Program Studi:</label>
         <br>
-        <input type="text" id="prodi" name="prodi" style="width: 250px;" required>
+        <input type="text" id="prodi" name="prodi" style="width: 250px;" required value="<?= $mhs["prodi"]; ?>">
         <br><br>
 
         <label for="email">E-mail:</label>
         <br>
-        <input type="email" id="email" name="email" style="width: 250px;" required>
+        <input type="email" id="email" name="email" style="width: 250px;" required value="<?= $mhs["email"]; ?>">
         <br><br>
 
         <label for="no_hp">Nomor HP:</label>
         <br>
-        <input type="number" id="no_hp" name="no_hp" style="width: 250px;" required>
+        <input type="number" id="no_hp" name="no_hp" style="width: 250px;" required value="<?= $mhs["no_hp"]; ?>">
         <br><br>
 
         <label for="foto">Upload Foto:</label>
         <br>
-        <input type="file" id="foto" name="foto" style="width: 250px;" required>
+        <input type="file" id="foto" name="foto" style="width: 250px;" required value="<?= $mhs["foto"]; ?>">
         <br><br>
 
-        <button type="submit" name="submit" style="padding: 5px 15px;">Tambah Data</button>
+        <button type="submit" name="submit" style="padding: 5px 15px;">Edit Data</button>
     </form>
     </div>
     <hr>
